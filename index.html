@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>وبکم من</title>
+  <style>
+    body {
+      background: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    video {
+      width: 80%;
+      max-width: 600px;
+      border: 3px solid #444;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>نمایش زنده دوربین</h2>
+  <video id="webcam" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById("webcam");
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        console.error("خطا در دسترسی به دوربین:", err);
+        alert("مشکلی در دسترسی به دوربین پیش آمد:\n" + err.message);
+      });
+  </script>
+</body>
+</html>
